@@ -23,6 +23,7 @@ export class AdminAuthController{
         return this.adminAuthService.login(dto.email, dto.password)
     }
 
+    @Roles(Role.Admin)
     @Post("invite")
     invite(@Body() dto: InviteAdminDto){
         return this.adminAuthService.invite(dto)
