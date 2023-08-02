@@ -7,7 +7,7 @@ export interface IUser{
     password:string
     createdAt: Date
     updatedAt: Date
-    isRevoked:boolean
+    isRevoked?:boolean
 }
 
 export type ICreateUserInput = Omit<IUser, 'id' | 'createdAt' | 'updatedAt'>
