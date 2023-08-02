@@ -31,7 +31,7 @@ export class UserWalletController{
     @Post("transfer")
     async transfer(@Body() dto: TransferDto, @Req() req:any){
 
-        const user = await this.userService.getByEmail(dto.receiverEmail)
+        const user = await this.userService.getUserByEmail(dto.receiverEmail)
         return this.walletService.transfer(dto.amount, user.id, req.user.id)
     }
 

@@ -33,13 +33,17 @@ export class UserService{
         return await this.userRepository.findOneBy({id})
     }
 
-    async getByEmail(email:string):Promise<IUser>{
-        const user = await this.userRepository.findOneBy({email})
+    async getUserByEmail(email:string){
+        const user = this.getByEmail(email)
         if(!user){
             throw new HttpException("User not found", HttpStatus.NOT_FOUND)
         }
 
         return user
+    }
+
+    async getByEmail(email:string):Promise<IUser>{
+        return await this.userRepository.findOneBy({email})
     }
 
     async activate(email:string){
