@@ -53,7 +53,9 @@ export class AdminAuthService{
         const admin = await this.adminService.getById(id)
         delete admin.password
 
-        return admin
+        return {
+            message:"User profile fetched successfully",
+            data:{...admin, type:'admin'}}
     }
 
     async acceptInvite(email:string, code:string){

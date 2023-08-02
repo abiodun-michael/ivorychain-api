@@ -90,10 +90,14 @@ export class UserAuthService{
 
     async getProfile(id:string){
         const user = await this.userService.getById(id)
-
+        delete user.password
+        
         return{
             message:"Profile fetched successfully",
-            data: user
+            data: {
+                ...user,
+                type:'user'
+            }
         }
     }
 
