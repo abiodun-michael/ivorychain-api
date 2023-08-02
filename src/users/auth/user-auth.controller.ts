@@ -8,7 +8,7 @@ import { Roles } from "src/core/decorators/roles.decorator";
 import { Role } from "src/core/constants";
 import { InviteUserDto } from "../dto/invite-user.dto";
 
-@ApiTags("Users")
+@ApiTags("Users Authentication")
 @Controller("users/auths")
 @ApiBearerAuth('jwt')
 export class UserAuthController{

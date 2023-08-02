@@ -11,7 +11,7 @@ import { Roles } from "src/core/decorators/roles.decorator";
 import { Role } from "src/core/constants";
 
 @ApiBearerAuth("jwt")
-@ApiTags("Admins")
+@ApiTags("Admins Authentication")
 @Controller("admins/auths")
 export class AdminAuthController{
     constructor(private readonly adminAuthService: AdminAuthService){}
