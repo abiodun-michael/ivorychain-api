@@ -30,7 +30,7 @@ SwaggerModule.setup('docs', app, document);
     forbidNonWhitelisted: true
   }));
   app.enableCors({
-    origin:["http://localhost:3000"],
+    origin:["http://localhost:3000",'https://ivorypay-fe.vercel.app'],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     preflightContinue: false,
     credentials: true,
