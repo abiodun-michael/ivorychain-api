@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { UserRepository } from "./repositories/user.repository";
 import { ICreateUserInput, IUpdateUserInput, IUser } from "./interfaces";
 import { WalletService } from "src/wallets/wallet.service";
@@ -34,7 +34,12 @@ export class UserService{
     }
 
     async getByEmail(email:string):Promise<IUser>{
-        return await this.userRepository.findOneBy({email})
+        const user = await this.userRepository.findOneBy({email})
+        if(!user){
+            throw new HttpException("User not found", HttpStatus.NOT_FOUND)
+        }
+
+        return user
     }
 
     async activate(email:string){

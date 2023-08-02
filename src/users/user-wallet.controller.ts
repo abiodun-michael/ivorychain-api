@@ -5,12 +5,14 @@ import { DepositDto } from "src/wallets/dto/deposit.dto";
 import { Roles } from "src/core/decorators/roles.decorator";
 import { Role } from "src/core/constants";
 import { TransferDto } from "src/wallets/dto/transfer.dto";
+import { UserService } from "./user.service";
 
 @ApiTags("Wallets")
 @Controller("users/wallets")
 @ApiBearerAuth('jwt')
 export class UserWalletController{
-    constructor(private readonly walletService: WalletService){}
+    constructor(private readonly walletService: WalletService,
+        private readonly userService: UserService){}
 
     @Roles(Role.Admin)
     @Get()
@@ -25,9 +27,12 @@ export class UserWalletController{
     }
 
 
+    @Roles(Role.User)
     @Post("transfer")
-    transfer(@Body() dto: TransferDto, @Req() req:any){
-        return this.walletService.transfer(dto.amount, dto.receiverWalletId, req.user.id)
+    async transfer(@Body() dto: TransferDto, @Req() req:any){
+
+        const user = await this.userService.getByEmail(dto.receiverEmail)
+        return this.walletService.transfer(dto.amount, user.id, req.user.id)
     }
 
     @Roles(Role.User)

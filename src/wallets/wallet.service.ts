@@ -49,8 +49,8 @@ export class WalletService{
         }
    }
 
-   async transfer(amount:number, receiverWalletId:string, userId:string){
-        const receiver = await this.walletRepository.findOneBy({id:receiverWalletId})
+   async transfer(amount:number, receiverId:string, userId:string){
+        const receiver = await this.walletRepository.findOneBy({user:{id:receiverId}})
 
         if(!receiver){
             throw new HttpException("Invalid wallet id", HttpStatus.BAD_REQUEST)
@@ -78,7 +78,6 @@ export class WalletService{
         }
 
    }
-
    
     async getById(id:string):Promise<IWallet>{
         return await this.walletRepository.findOneBy({id})
