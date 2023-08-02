@@ -22,7 +22,7 @@ export class UserAuthController{
 
     
     @Roles(Role.Admin)
-    @Post('invite')
+    @Post()
     invite(@Body() dto:InviteUserDto){
         return this.userAuthService.invite(dto)
     }
