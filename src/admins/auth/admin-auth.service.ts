@@ -87,7 +87,7 @@ export class AdminAuthService{
 
         await this.adminOtpRepository.insert({email: data.email, code:otp})
 
-        await this.emailService.sendActivationCode(newAdmin.fullName, otp, data.email)
+        // await this.emailService.sendActivationCode(newAdmin.fullName, otp, data.email)
         
 
         return{

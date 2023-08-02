@@ -41,14 +41,10 @@ export class AuthGuard implements CanActivate{
 
             const role = this.reflector.get<string[]>('role', context.getHandler())
 
-            console.log(role)
-
             if(role !== payload.type){
                 return false
             }
-            
-            // 💡 We're assigning the payload to the request object here
-            // so that we can access it in our route handlers
+
             request['user'] = payload;
 
             return true

@@ -62,7 +62,7 @@ export class UserAuthService{
 
         await this.userOtpRepository.insert({email: data.email, code:otp})
 
-        await this.emailService.sendActivationCode(newUser.firstName, otp, data.email)
+        // await this.emailService.sendActivationCode(newUser.firstName, otp, data.email)
         
 
         return{

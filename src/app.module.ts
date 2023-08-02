@@ -13,7 +13,8 @@ import { AuthModule } from './auths/auth.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      isGlobal:true
+      isGlobal:true,
+      envFilePath:'.env'
       }),
       TypeOrmModule.forRootAsync({useClass: TypeOrmConfigService}),
       UserModule, 

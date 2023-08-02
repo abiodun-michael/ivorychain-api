@@ -24,8 +24,8 @@ export class AdminAuthController{
     }
 
     @Roles(Role.Admin)
-    @Post("invite")
-    invite(@Body() dto: InviteAdminDto){
+    @Post()
+    inviteAdmin(@Body() dto: InviteAdminDto){
         return this.adminAuthService.invite(dto)
     }
 
