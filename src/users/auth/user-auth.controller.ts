@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Put, Req, UseGuards } from "@nestjs/common";
+import { Body, Controller, Get, Param, Post, Put, Req, UseGuards } from "@nestjs/common";
 import { UserAuthService } from "./user-auth.service";
 import { LoginDto } from "src/auths/dto/login.dto";
 import { AcceptInviteDto } from "src/auths/dto/accept-invite.dto";
@@ -37,5 +37,11 @@ export class UserAuthController{
     @Put("accept-invite")
     acceptInvite(@Body() dto: AcceptInviteDto){
         this.userAuthService.acceptInvite(dto.email, dto.code)
+    }
+
+    @Roles(Role.Admin)
+    @Put(":id/status")
+    updateStatus(@Param("id") id:string){
+        return this.userAuthService.updateStatusById(id)
     }
 }

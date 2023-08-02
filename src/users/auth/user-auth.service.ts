@@ -96,4 +96,20 @@ export class UserAuthService{
             data: user
         }
     }
+
+    async updateStatusById(id:string){
+        const user = await this.userService.getById(id)
+
+        if(!user){
+            throw new HttpException("Invalid id", HttpStatus.BAD_REQUEST)
+        }
+
+        await this.userService
+        .updateStatusById(id, !user.isRevoked)
+
+        return {
+            message:"User status updated",
+            status:true
+        }
+    }
 }

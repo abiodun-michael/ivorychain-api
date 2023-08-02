@@ -1,6 +1,6 @@
 
 
-import { Body, Controller, Get, HttpCode, HttpStatus, Post, Put, Req, UseGuards } from "@nestjs/common";
+import { Body, Controller, Get, HttpCode, HttpStatus, Param, Post, Put, Req, UseGuards } from "@nestjs/common";
 import { LoginDto } from "src/auths/dto/login.dto";
 import { AcceptInviteDto } from "src/auths/dto/accept-invite.dto";
 import { ApiBearerAuth, ApiTags } from "@nestjs/swagger";
@@ -46,5 +46,11 @@ export class AdminAuthController{
     @Get("profile")
     profile(@Req() req:any){
         return this.adminAuthService.getProfile(req.user.id)
+    }
+
+    @Roles(Role.Admin)
+    @Put(":id/status")
+    updateStatus(@Param("id") id:string){
+        return this.adminAuthService.updateStatusById(id)
     }
 }

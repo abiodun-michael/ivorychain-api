@@ -41,4 +41,8 @@ export class UserService{
         await this.userRepository.update({email}, {isActive:true})
     }
 
+    async updateStatusById(id:string, status:boolean): Promise<any>{
+        return await this.userRepository.update({id}, {isRevoked: status})
+    }
+
 }

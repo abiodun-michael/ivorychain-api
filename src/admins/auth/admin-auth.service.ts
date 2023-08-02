@@ -95,5 +95,20 @@ export class AdminAuthService{
             status: true
         }
     }
+
+    async updateStatusById(id:string){
+        const admin = await this.adminService.getById(id)
+
+        if(!admin){
+            throw new HttpException("Invalid id", HttpStatus.BAD_REQUEST)
+        }
+
+        await this.adminService.updateStatusById(id, !admin.isRevoked)
+
+        return {
+            message:"Admin status updated",
+            status:true
+        }
+    }
     
 }

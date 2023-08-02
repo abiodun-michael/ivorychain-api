@@ -36,4 +36,8 @@ export class AdminService{
         return await this.adminRepository.findOneBy({id})
     }
 
+    async updateStatusById(id:string, status:boolean): Promise<any>{
+        return await this.adminRepository.update({id}, {isRevoked: status})
+    }
+
 }
